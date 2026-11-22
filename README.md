@@ -1,0 +1,73 @@
+# Fearless War Room
+
+A Fearless Draft prep tool for Cloud9's League of Legends coaches.
+Built for the Cloud9 x JetBrains "Sky's The Limit" Hackathon 2026, Category 2.
+
+## Setup
+
+```
+hackathon/
+├── stl-hackathon-2026-grid-starter/   # official GRID data (never commit)
+└── fearless-war-room/                 # this repo
+```
+
+```bash
+git clone --filter=blob:none --sparse https://github.com/cloud9esports/stl-hackathon-2026-grid-starter.git
+cd stl-hackathon-2026-grid-starter && git sparse-checkout set lol meta && cd ..
+cd fearless-war-room
+pip install -r requirements.txt
+python pipeline/extract_drafts.py            # all LoL series
+python pipeline/extract_drafts.py --team "Cloud9 Kia"   # quick test
+python pipeline/build_scout.py               # step 2: scouting JSON for every team
+python -m unittest discover tests            # tests (synthetic data, no GRID needed)
+```
+
+Outputs (gitignored, derived from licensed data):
+- `cache/drafts.csv` one row per pick/ban, with game number, side, patch, result
+- `cache/games.csv` one row per game, with both drafts and `burned_before` (Fearless locks)
+
+Committed (aggregates only, allowed by the data license):
+- `web/public/data/index.json` every team with games, win rate, headline insight, plus league-wide champion presence
+- `web/public/data/teams/<team_id>.json` one scouting report per team (Cloud9 Kia, every LCS 2026 team, plus LCK/LEC/LTA teams)
+
+## Opponent scout (step 2)
+
+`pipeline/build_scout.py` turns the draft cache into a report per team, scoped to the team's latest season (2026 for LCS):
+
+- **Champion table**: pick, ban, first-pick and first-ban rates, presence, win rate, bans aimed at the team, with sample sizes (`"7/10"`). Split by Fearless game number (G1, G2, G3+) and by side, plus pick rate vs the league.
+- **Top lists**: picks, bans and first picks per game number and side.
+- **Fearless shift**: the team's five G1 favorites; for each, what *the player who plays it* picks once it is burned or banned (role-correct via GRID rosters); share of G2/G3+ picks on champions never seen in a G1 vs the league average; pool size per game number; picks once 3+ favorites are gone.
+- **Players**: each player's most-played champions and G3+ picks.
+- **Insights**: 3 to 5 plain-English findings with evidence, chosen to answer *"What pick/ban tendencies repeat most?"* and *"How does the draft shift in Fearless G3/4/5?"*
+
+First pick is read from draft order, not side: since 2026 Riot's First Selection lets a team take first pick or side, and 240 of the 2026 games in the data have red side picking first.
+
+## Draft board (step 3)
+
+React + Vite app in `web/`, reading the committed JSON.
+
+```bash
+cd web
+npm install          # .npmrc sets legacy-peer-deps (works around an npm 10 peer bug)
+npm run dev          # http://localhost:5173
+npm test             # Fearless rules + scout suggestion tests (vitest)
+npm run build        # static site in web/dist, deployable anywhere
+```
+
+- **Series**: Bo3 or Bo5, game tabs, score, winner per game. First selection defaults to the loser of the last game, and first pick and side are set separately (2026 First Selection).
+- **Fearless rules**: every champion picked earlier in the series is burned for both teams (🔥), and bans reset each game. Locked champions can't be selected, and the burn count shows on every tab.
+- **Draft**: the full 20-step tournament order with the active slot highlighted. Champion grid with search (Enter picks the first match), role filters and hide-locked. Undo. Saved in localStorage.
+- **Live scout panel**: the opponent's likely picks and bans for *this* game number, minus everything locked. Their G1 favorites show as open, banned or burned, with the player's fallback picks. "Contested" champions sit high on both teams' lists, and the panel ends with the auto insights.
+- Champion portraits come from Riot Data Dragon; it falls back to initials offline.
+
+Before every push: `git ls-files | grep -Ei '\.(zst|jsonl|parquet|sqlite|duckdb)$|cache/'` should print nothing.
+
+## Roadmap
+1. Draft extractor (done)
+2. Opponent scout stats by team and game number -> aggregate JSON (done)
+3. Draft board with Fearless rules (React) (done)
+4. Save/burn advisor + win-probability model
+5. Self-scout mode, polish, deploy
+
+## JetBrains tools
+PyCharm (pipeline), WebStorm (frontend), Junie (coding agent).
