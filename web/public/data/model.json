@@ -1,0 +1,1042 @@
+{
+  "champions": {
+    "Skarner": {
+      "games": 214,
+      "wins": 98,
+      "strength": -0.161062
+    },
+    "K'Sante": {
+      "games": 304,
+      "wins": 135,
+      "strength": -0.217413
+    },
+    "Yone": {
+      "games": 217,
+      "wins": 122,
+      "strength": 0.239017
+    },
+    "Miss Fortune": {
+      "games": 198,
+      "wins": 94,
+      "strength": -0.096228
+    },
+    "Rell": {
+      "games": 380,
+      "wins": 188,
+      "strength": -0.020514
+    },
+    "Viktor": {
+      "games": 262,
+      "wins": 117,
+      "strength": -0.206614
+    },
+    "Corki": {
+      "games": 403,
+      "wins": 173,
+      "strength": -0.277802
+    },
+    "Sejuani": {
+      "games": 279,
+      "wins": 134,
+      "strength": -0.076161
+    },
+    "Leona": {
+      "games": 227,
+      "wins": 99,
+      "strength": -0.245958
+    },
+    "Jayce": {
+      "games": 272,
+      "wins": 122,
+      "strength": -0.199238
+    },
+    "Aurora": {
+      "games": 283,
+      "wins": 141,
+      "strength": -0.006826
+    },
+    "Wukong": {
+      "games": 334,
+      "wins": 175,
+      "strength": 0.09309
+    },
+    "Kai'Sa": {
+      "games": 282,
+      "wins": 149,
+      "strength": 0.109699
+    },
+    "Galio": {
+      "games": 206,
+      "wins": 96,
+      "strength": -0.129812
+    },
+    "Poppy": {
+      "games": 216,
+      "wins": 123,
+      "strength": 0.267063
+    },
+    "Rumble": {
+      "games": 467,
+      "wins": 250,
+      "strength": 0.138586
+    },
+    "Viego": {
+      "games": 57,
+      "wins": 24,
+      "strength": -0.27029
+    },
+    "Taliyah": {
+      "games": 368,
+      "wins": 209,
+      "strength": 0.26611
+    },
+    "Rakan": {
+      "games": 378,
+      "wins": 207,
+      "strength": 0.186102
+    },
+    "Xayah": {
+      "games": 180,
+      "wins": 102,
+      "strength": 0.253988
+    },
+    "Varus": {
+      "games": 350,
+      "wins": 187,
+      "strength": 0.133531
+    },
+    "Nautilus": {
+      "games": 308,
+      "wins": 136,
+      "strength": -0.22739
+    },
+    "Renekton": {
+      "games": 232,
+      "wins": 126,
+      "strength": 0.165667
+    },
+    "Brand": {
+      "games": 9,
+      "wins": 2,
+      "strength": -0.538997
+    },
+    "Yasuo": {
+      "games": 19,
+      "wins": 8,
+      "strength": -0.207639
+    },
+    "Xin Zhao": {
+      "games": 487,
+      "wins": 245,
+      "strength": 0.012073
+    },
+    "Renata Glasc": {
+      "games": 119,
+      "wins": 60,
+      "strength": 0.015504
+    },
+    "Kalista": {
+      "games": 120,
+      "wins": 68,
+      "strength": 0.247408
+    },
+    "Gragas": {
+      "games": 63,
+      "wins": 31,
+      "strength": -0.027399
+    },
+    "Ambessa": {
+      "games": 370,
+      "wins": 179,
+      "strength": -0.063179
+    },
+    "Akali": {
+      "games": 115,
+      "wins": 50,
+      "strength": -0.241162
+    },
+    "Ziggs": {
+      "games": 84,
+      "wins": 47,
+      "strength": 0.213574
+    },
+    "Alistar": {
+      "games": 384,
+      "wins": 206,
+      "strength": 0.142372
+    },
+    "Nocturne": {
+      "games": 149,
+      "wins": 67,
+      "strength": -0.189242
+    },
+    "Orianna": {
+      "games": 248,
+      "wins": 131,
+      "strength": 0.108634
+    },
+    "Ashe": {
+      "games": 187,
+      "wins": 104,
+      "strength": 0.214011
+    },
+    "Jax": {
+      "games": 158,
+      "wins": 85,
+      "strength": 0.143101
+    },
+    "Braum": {
+      "games": 221,
+      "wins": 106,
+      "strength": -0.077962
+    },
+    "Ivern": {
+      "games": 34,
+      "wins": 19,
+      "strength": 0.182322
+    },
+    "Smolder": {
+      "games": 46,
+      "wins": 17,
+      "strength": -0.435318
+    },
+    "Nidalee": {
+      "games": 78,
+      "wins": 45,
+      "strength": 0.274437
+    },
+    "Ezreal": {
+      "games": 413,
+      "wins": 207,
+      "strength": 0.004728
+    },
+    "Sion": {
+      "games": 295,
+      "wins": 142,
+      "strength": -0.072162
+    },
+    "Blitzcrank": {
+      "games": 32,
+      "wins": 17,
+      "strength": 0.09531
+    },
+    "Maokai": {
+      "games": 161,
+      "wins": 91,
+      "strength": 0.24686
+    },
+    "Zyra": {
+      "games": 56,
+      "wins": 26,
+      "strength": -0.121361
+    },
+    "Zeri": {
+      "games": 98,
+      "wins": 43,
+      "strength": -0.223144
+    },
+    "Caitlyn": {
+      "games": 116,
+      "wins": 67,
+      "strength": 0.287682
+    },
+    "Azir": {
+      "games": 394,
+      "wins": 189,
+      "strength": -0.079249
+    },
+    "Jinx": {
+      "games": 56,
+      "wins": 27,
+      "strength": -0.060625
+    },
+    "Lulu": {
+      "games": 138,
+      "wins": 67,
+      "strength": -0.054067
+    },
+    "Jarvan IV": {
+      "games": 206,
+      "wins": 104,
+      "strength": 0.018519
+    },
+    "Xerath": {
+      "games": 7,
+      "wins": 3,
+      "strength": -0.117783
+    },
+    "Vi": {
+      "games": 344,
+      "wins": 167,
+      "strength": -0.056512
+    },
+    "Ahri": {
+      "games": 265,
+      "wins": 120,
+      "strength": -0.182322
+    },
+    "Jhin": {
+      "games": 264,
+      "wins": 115,
+      "strength": -0.249461
+    },
+    "Bard": {
+      "games": 203,
+      "wins": 98,
+      "strength": -0.065751
+    },
+    "Hwei": {
+      "games": 58,
+      "wins": 27,
+      "strength": -0.117783
+    },
+    "Tristana": {
+      "games": 51,
+      "wins": 26,
+      "strength": 0.03279
+    },
+    "Ornn": {
+      "games": 100,
+      "wins": 54,
+      "strength": 0.145712
+    },
+    "Elise": {
+      "games": 53,
+      "wins": 26,
+      "strength": -0.031749
+    },
+    "Gangplank": {
+      "games": 12,
+      "wins": 6,
+      "strength": 0.0
+    },
+    "Lillia": {
+      "games": 63,
+      "wins": 34,
+      "strength": 0.137201
+    },
+    "Sett": {
+      "games": 8,
+      "wins": 7,
+      "strength": 0.693147
+    },
+    "Gnar": {
+      "games": 205,
+      "wins": 110,
+      "strength": 0.139762
+    },
+    "Pantheon": {
+      "games": 297,
+      "wins": 145,
+      "strength": -0.045611
+    },
+    "Zilean": {
+      "games": 3,
+      "wins": 1,
+      "strength": -0.154151
+    },
+    "Lee Sin": {
+      "games": 69,
+      "wins": 35,
+      "strength": 0.025318
+    },
+    "Garen": {
+      "games": 8,
+      "wins": 3,
+      "strength": -0.223144
+    },
+    "Tahm Kench": {
+      "games": 14,
+      "wins": 5,
+      "strength": -0.336472
+    },
+    "Sylas": {
+      "games": 141,
+      "wins": 73,
+      "strength": 0.066249
+    },
+    "Seraphine": {
+      "games": 91,
+      "wins": 51,
+      "strength": 0.218689
+    },
+    "Olaf": {
+      "games": 31,
+      "wins": 16,
+      "strength": 0.04879
+    },
+    "Cassiopeia": {
+      "games": 77,
+      "wins": 38,
+      "strength": -0.02299
+    },
+    "Draven": {
+      "games": 18,
+      "wins": 10,
+      "strength": 0.143101
+    },
+    "Zoe": {
+      "games": 14,
+      "wins": 8,
+      "strength": 0.167054
+    },
+    "Neeko": {
+      "games": 264,
+      "wins": 141,
+      "strength": 0.131576
+    },
+    "Urgot": {
+      "games": 7,
+      "wins": 2,
+      "strength": -0.356675
+    },
+    "Lucian": {
+      "games": 200,
+      "wins": 90,
+      "strength": -0.191055
+    },
+    "Nami": {
+      "games": 124,
+      "wins": 62,
+      "strength": 0.0
+    },
+    "Lux": {
+      "games": 4,
+      "wins": 3,
+      "strength": 0.287682
+    },
+    "Yuumi": {
+      "games": 6,
+      "wins": 2,
+      "strength": -0.251314
+    },
+    "Karma": {
+      "games": 135,
+      "wins": 63,
+      "strength": -0.124298
+    },
+    "Swain": {
+      "games": 10,
+      "wins": 6,
+      "strength": 0.200671
+    },
+    "Kog'Maw": {
+      "games": 6,
+      "wins": 2,
+      "strength": -0.251314
+    },
+    "Kindred": {
+      "games": 6,
+      "wins": 2,
+      "strength": -0.251314
+    },
+    "Aphelios": {
+      "games": 67,
+      "wins": 29,
+      "strength": -0.23484
+    },
+    "Vladimir": {
+      "games": 9,
+      "wins": 3,
+      "strength": -0.318454
+    },
+    "Udyr": {
+      "games": 3,
+      "wins": 1,
+      "strength": -0.154151
+    },
+    "Gwen": {
+      "games": 223,
+      "wins": 109,
+      "strength": -0.042925
+    },
+    "Senna": {
+      "games": 91,
+      "wins": 50,
+      "strength": 0.178692
+    },
+    "Nilah": {
+      "games": 2,
+      "wins": 1,
+      "strength": 0.0
+    },
+    "Twisted Fate": {
+      "games": 40,
+      "wins": 19,
+      "strength": -0.080043
+    },
+    "Syndra": {
+      "games": 42,
+      "wins": 22,
+      "strength": 0.076961
+    },
+    "Camille": {
+      "games": 61,
+      "wins": 37,
+      "strength": 0.370374
+    },
+    "Anivia": {
+      "games": 62,
+      "wins": 33,
+      "strength": 0.111226
+    },
+    "Thresh": {
+      "games": 21,
+      "wins": 8,
+      "strength": -0.325422
+    },
+    "Tryndamere": {
+      "games": 3,
+      "wins": 2,
+      "strength": 0.154151
+    },
+    "LeBlanc": {
+      "games": 30,
+      "wins": 14,
+      "strength": -0.100083
+    },
+    "Zac": {
+      "games": 3,
+      "wins": 2,
+      "strength": 0.154151
+    },
+    "Cho'Gath": {
+      "games": 38,
+      "wins": 20,
+      "strength": 0.083382
+    },
+    "Aatrox": {
+      "games": 157,
+      "wins": 77,
+      "strength": -0.035932
+    },
+    "Amumu": {
+      "games": 5,
+      "wins": 2,
+      "strength": -0.133531
+    },
+    "Shen": {
+      "games": 41,
+      "wins": 23,
+      "strength": 0.19671
+    },
+    "Diana": {
+      "games": 6,
+      "wins": 0,
+      "strength": -0.788457
+    },
+    "Pyke": {
+      "games": 19,
+      "wins": 11,
+      "strength": 0.207639
+    },
+    "Mel": {
+      "games": 24,
+      "wins": 5,
+      "strength": -0.875469
+    },
+    "Volibear": {
+      "games": 17,
+      "wins": 10,
+      "strength": 0.223144
+    },
+    "Irelia": {
+      "games": 9,
+      "wins": 4,
+      "strength": -0.105361
+    },
+    "Soraka": {
+      "games": 5,
+      "wins": 4,
+      "strength": 0.405465
+    },
+    "Sivir": {
+      "games": 156,
+      "wins": 86,
+      "strength": 0.193371
+    },
+    "Kennen": {
+      "games": 22,
+      "wins": 12,
+      "strength": 0.125163
+    },
+    "Taric": {
+      "games": 6,
+      "wins": 3,
+      "strength": 0.0
+    },
+    "Warwick": {
+      "games": 4,
+      "wins": 3,
+      "strength": 0.287682
+    },
+    "Karthus": {
+      "games": 2,
+      "wins": 2,
+      "strength": 0.336472
+    },
+    "Fiora": {
+      "games": 5,
+      "wins": 3,
+      "strength": 0.133531
+    },
+    "Twitch": {
+      "games": 2,
+      "wins": 1,
+      "strength": 0.0
+    },
+    "Ryze": {
+      "games": 308,
+      "wins": 153,
+      "strength": -0.012579
+    },
+    "Kled": {
+      "games": 14,
+      "wins": 8,
+      "strength": 0.167054
+    },
+    "Mordekaiser": {
+      "games": 3,
+      "wins": 1,
+      "strength": -0.154151
+    },
+    "Vayne": {
+      "games": 15,
+      "wins": 9,
+      "strength": 0.241162
+    },
+    "Trundle": {
+      "games": 151,
+      "wins": 69,
+      "strength": -0.161843
+    },
+    "Aurelion Sol": {
+      "games": 13,
+      "wins": 9,
+      "strength": 0.441833
+    },
+    "Vex": {
+      "games": 5,
+      "wins": 2,
+      "strength": -0.133531
+    },
+    "Dr. Mundo": {
+      "games": 48,
+      "wins": 25,
+      "strength": 0.068993
+    },
+    "Annie": {
+      "games": 165,
+      "wins": 83,
+      "strength": 0.011429
+    },
+    "Naafiri": {
+      "games": 147,
+      "wins": 76,
+      "strength": 0.063716
+    },
+    "Riven": {
+      "games": 3,
+      "wins": 2,
+      "strength": 0.154151
+    },
+    "Yorick": {
+      "games": 97,
+      "wins": 39,
+      "strength": -0.358945
+    },
+    "Fiddlesticks": {
+      "games": 4,
+      "wins": 3,
+      "strength": 0.287682
+    },
+    "Zed": {
+      "games": 17,
+      "wins": 11,
+      "strength": 0.374693
+    },
+    "Malphite": {
+      "games": 15,
+      "wins": 6,
+      "strength": -0.241162
+    },
+    "Milio": {
+      "games": 55,
+      "wins": 22,
+      "strength": -0.341749
+    },
+    "Janna": {
+      "games": 3,
+      "wins": 2,
+      "strength": 0.154151
+    },
+    "Talon": {
+      "games": 1,
+      "wins": 1,
+      "strength": 0.182322
+    },
+    "Veigar": {
+      "games": 3,
+      "wins": 2,
+      "strength": 0.154151
+    },
+    "Kha'Zix": {
+      "games": 7,
+      "wins": 5,
+      "strength": 0.356675
+    },
+    "Morgana": {
+      "games": 6,
+      "wins": 3,
+      "strength": 0.0
+    },
+    "Kassadin": {
+      "games": 1,
+      "wins": 1,
+      "strength": 0.182322
+    },
+    "Malzahar": {
+      "games": 2,
+      "wins": 0,
+      "strength": -0.336472
+    },
+    "Yunara": {
+      "games": 175,
+      "wins": 91,
+      "strength": 0.075712
+    },
+    "Hecarim": {
+      "games": 1,
+      "wins": 1,
+      "strength": 0.182322
+    },
+    "Rek'Sai": {
+      "games": 20,
+      "wins": 11,
+      "strength": 0.133531
+    },
+    "Singed": {
+      "games": 1,
+      "wins": 1,
+      "strength": 0.182322
+    },
+    "Qiyana": {
+      "games": 19,
+      "wins": 9,
+      "strength": -0.068993
+    },
+    "Lissandra": {
+      "games": 8,
+      "wins": 5,
+      "strength": 0.223144
+    },
+    "Rammus": {
+      "games": 1,
+      "wins": 0,
+      "strength": -0.182322
+    },
+    "Zaahen": {
+      "games": 32,
+      "wins": 17,
+      "strength": 0.09531
+    },
+    "Ekko": {
+      "games": 2,
+      "wins": 0,
+      "strength": -0.336472
+    },
+    "Nasus": {
+      "games": 3,
+      "wins": 3,
+      "strength": 0.470004
+    },
+    "Sona": {
+      "games": 2,
+      "wins": 0,
+      "strength": -0.336472
+    },
+    "Quinn": {
+      "games": 2,
+      "wins": 2,
+      "strength": 0.336472
+    },
+    "Shyvana": {
+      "games": 8,
+      "wins": 4,
+      "strength": 0.0
+    },
+    "Locke": {
+      "games": 7,
+      "wins": 5,
+      "strength": 0.356675
+    }
+  },
+  "teams": {
+    "52817": {
+      "name": "OKSavingsBank BRION",
+      "games": 96,
+      "rating": 1314.23
+    },
+    "47961": {
+      "name": "DRX",
+      "games": 95,
+      "rating": 1324.52
+    },
+    "3483": {
+      "name": "DN FREECS",
+      "games": 88,
+      "rating": 1172.17
+    },
+    "52747": {
+      "name": "NONGSHIM RED FORCE",
+      "games": 115,
+      "rating": 1304.4
+    },
+    "4035": {
+      "name": "BNK FearX",
+      "games": 102,
+      "rating": 1407.71
+    },
+    "407": {
+      "name": "KT Rolster",
+      "games": 109,
+      "rating": 1544.74
+    },
+    "48179": {
+      "name": "Dplus KIA",
+      "games": 129,
+      "rating": 1544.41
+    },
+    "47494": {
+      "name": "T1",
+      "games": 108,
+      "rating": 1729.33
+    },
+    "47558": {
+      "name": "Gen.G Esports",
+      "games": 115,
+      "rating": 1915.31
+    },
+    "406": {
+      "name": "Hanwha Life Esports",
+      "games": 113,
+      "rating": 1743.19
+    },
+    "47435": {
+      "name": "Team Heretics",
+      "games": 86,
+      "rating": 1272.14
+    },
+    "106": {
+      "name": "Rogue",
+      "games": 29,
+      "rating": 1338.89
+    },
+    "47370": {
+      "name": "Team Vitality",
+      "games": 98,
+      "rating": 1559.9
+    },
+    "52661": {
+      "name": "Team BDS",
+      "games": 80,
+      "rating": 1332.89
+    },
+    "53168": {
+      "name": "GIANTX",
+      "games": 104,
+      "rating": 1507.26
+    },
+    "353": {
+      "name": "SK Gaming",
+      "games": 66,
+      "rating": 1279.66
+    },
+    "47619": {
+      "name": "Movistar KOI",
+      "games": 131,
+      "rating": 1673.68
+    },
+    "47376": {
+      "name": "Fnatic",
+      "games": 116,
+      "rating": 1536.09
+    },
+    "53165": {
+      "name": "Karmine Corp",
+      "games": 160,
+      "rating": 1773.39
+    },
+    "47380": {
+      "name": "G2 Esports",
+      "games": 117,
+      "rating": 1839.95
+    },
+    "47960": {
+      "name": "LOUD",
+      "games": 57,
+      "rating": 1529.64
+    },
+    "3389": {
+      "name": "Pain Gaming",
+      "games": 62,
+      "rating": 1516.45
+    },
+    "48173": {
+      "name": "Vivo Keyd Stars",
+      "games": 62,
+      "rating": 1603.07
+    },
+    "47757": {
+      "name": "Leviatán Esports",
+      "games": 39,
+      "rating": 1407.6
+    },
+    "53073": {
+      "name": "Shopify Rebellion",
+      "games": 93,
+      "rating": 1323.76
+    },
+    "340": {
+      "name": "FlyQuest",
+      "games": 113,
+      "rating": 1675.9
+    },
+    "54198": {
+      "name": "LYON",
+      "games": 94,
+      "rating": 1708.1
+    },
+    "47351": {
+      "name": "Cloud9 Kia",
+      "games": 142,
+      "rating": 1676.65
+    },
+    "54284": {
+      "name": "Isurus Estral",
+      "games": 50,
+      "rating": 1452.02
+    },
+    "47389": {
+      "name": "FURIA",
+      "games": 54,
+      "rating": 1540.66
+    },
+    "52573": {
+      "name": "RED Kalunga",
+      "games": 63,
+      "rating": 1514.28
+    },
+    "48070": {
+      "name": "Fluxo",
+      "games": 30,
+      "rating": 1285.19
+    },
+    "52416": {
+      "name": "Disguised",
+      "games": 85,
+      "rating": 1435.81
+    },
+    "47497": {
+      "name": "100 Thieves",
+      "games": 69,
+      "rating": 1615.1
+    },
+    "47499": {
+      "name": "Dignitas",
+      "games": 66,
+      "rating": 1236.39
+    },
+    "47363": {
+      "name": "Team Liquid Honda",
+      "games": 113,
+      "rating": 1652.07
+    },
+    "55749": {
+      "name": "Natus Vincere",
+      "games": 47,
+      "rating": 1469.07
+    },
+    "54398": {
+      "name": "Los Ratones",
+      "games": 11,
+      "rating": 1493.49
+    },
+    "48007": {
+      "name": "Karmine Corp Blue",
+      "games": 11,
+      "rating": 1423.59
+    },
+    "56389": {
+      "name": "Sentinels",
+      "games": 43,
+      "rating": 1441.52
+    },
+    "20484": {
+      "name": "Maryville University",
+      "games": 14,
+      "rating": 1527.02
+    },
+    "46113": {
+      "name": "Zeu5 Esports",
+      "games": 4,
+      "rating": 1476.7
+    },
+    "57774": {
+      "name": "Cupid Esports",
+      "games": 9,
+      "rating": 1458.63
+    },
+    "46230": {
+      "name": "Fuego",
+      "games": 6,
+      "rating": 1423.43
+    }
+  },
+  "coef": {
+    "elo": 1.49373,
+    "draft": 0.355713,
+    "blue": 0.14127,
+    "first_pick": 0.007917
+  },
+  "metrics": {
+    "games": 1697,
+    "log_loss": 0.636224,
+    "accuracy": 0.6382,
+    "baseline_log_loss": 0.693147
+  },
+  "meta": {
+    "generated": "2026-11-22T19:21:58Z",
+    "patches": [
+      "15.1",
+      "15.10",
+      "15.11",
+      "15.14",
+      "15.15",
+      "15.16",
+      "15.17",
+      "15.18",
+      "15.2",
+      "15.3",
+      "15.6",
+      "15.7",
+      "15.8",
+      "15.9",
+      "16.1",
+      "16.10",
+      "16.11",
+      "16.14",
+      "16.15",
+      "16.16",
+      "16.17",
+      "16.2",
+      "16.3",
+      "16.4",
+      "16.6",
+      "16.7",
+      "16.8",
+      "16.9"
+    ],
+    "events": 20
+  }
+}

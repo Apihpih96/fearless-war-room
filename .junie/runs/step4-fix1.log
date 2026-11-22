@@ -1,0 +1,71 @@
+Junie 26.11.2 (4100.11) (pid=20134): log file: /home/sandbox/.junie/logs/log-2026-11-22_192325-pid-20134.log
+Authenticated successfully
+● Opened file
+web/src/data.js
+The `data.js` file has been opened to inspect the `loadModel` function. This action is part of the plan to fix the cache guard logic that incorrectly allows null values.
+● Open file
+The specified test file does not exist in the project.
+● Opened file
+web/src/App.jsx [1 - 111]
+The App.jsx file has been opened.
+● Opened file
+web/src/App.jsx [101 - 201]
+The App.jsx file was scrolled down to view the end of the code.
+● Opened file
+web/src/components/WinBar.jsx
+The WinBar component file has been opened.
+● Opened file
+web/src/components/AdvisorPanel.jsx
+The AdvisorPanel.jsx file has been opened.
+● Edited files
+Updated web/src/data.js
+The bug in `data.js` where `modelCache.current` was initialized as `null` has been fixed by changing the initial value to `undefined`. This ensures the caching logic correctly fetches the model instead of immediately returning `null`.
+● Found "web/src/*.test.js" 
+web/src/advisor.test.js
+web/src/model.test.js
+web/src/draft.test.js
+● Opened file
+web/src/model.test.js
+The model test file has been opened.
+● Searched "web/vitest*.{js,ts,json,mjs}" 
+No matches found
+● Opened file
+web/package.json
+The package.json file has been opened.
+● Edited files
+Created web/src/data.test.js
+The test file for `data.js` has been created to verify the `loadModel` function's behavior, including successful fetching, error handling, and caching. This follows the previous step where `modelCache.current` was initialized to `undefined`.
+● Edited files
+Updated web/src/App.jsx
+The footer text in App.jsx has been updated to credit Junie as JetBrains' coding agent.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1
+| RUN  v4.1.12 /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web
+| ...
+| Start at  19:24:04
+| Duration  697ms (transform 118ms, setup 0ms, import 132ms, tests 77ms, environment 0ms)
+The vitest tests were executed to verify the recent code changes. All 32 tests across 4 test files passed successfully.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build 2>&1
+| vite v7.3.8 building client environment for production...
+| ...
+| dist/assets/index-Ai8xCayO.js   244.59 kB | gzip: 77.22 kB
+| ✓ built in 1.24s
+The Vite production build completed successfully.
+● TASK RESULT
+Fixed the `loadModel()` cache bug, added vitest tests, and updated the footer text.
+### Changes
+- **`web/src/data.js`**: Changed `modelCache.current` initial value from `null` to `undefined` so the guard `!== undefined` correctly allows the first fetch to proceed (previously `null !== undefined` was true, so it always returned `null` without fetching).
+- **`web/src/data.test.js`**: Created new test file with 3 vitest tests: (1) fetches and returns parsed model on success, (2) returns `null` when fetch fails, (3) caches result so subsequent calls skip fetching. Uses dynamic imports with query params for fresh module state per test.
+- **`web/src/App.jsx`**: Updated footer from "Built with PyCharm, WebStorm and Junie" to "Built with Junie, JetBrains' coding agent".
+### Verification
+- `npx vitest run`: 4 test files, 32 tests passed (including 3 new data.test.js tests).
+- `npx vite build`: production build succeeded in 1.24s.
+- Reviewed WinBar and AdvisorPanel: both correctly guard on `model` being truthy; AdvisorPanel shows for the team on the clock and each row's button calls `onPick(rec.champion)`.
+### Notes
+- No commit made, as instructed.
+# FILES
+Updated web/src/data.js
+Created web/src/data.test.js
+Updated web/src/App.jsx
+exit=0

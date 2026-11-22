@@ -42,6 +42,26 @@ Committed (aggregates only, allowed by the data license):
 
 First pick is read from draft order, not side: since 2026 Riot's First Selection lets a team take first pick or side, and 240 of the 2026 games in the data have red side picking first.
 
+## Save-or-burn advisor & win probability (step 4)
+
+`pipeline/build_model.py` builds a win-probability model from the draft cache and writes `web/public/data/model.json`:
+
+- **Champion strength**: Bayesian-shrunk log-odds win rate — `(wins + 10×0.5) / (games + 10)` then logit. Strong champions get positive strength, weak ones negative.
+- **Team Elo**: K=24, starting at 1500, updated in date order. Final rating per team.
+- **Logistic regression**: fitted by plain gradient descent (L2 1e-3, 2000 iterations, lr 0.1) on four per-game features (blue perspective):
+  1. `elo` — (blue rating − red rating) / 400 (ratings **before** the game, no leakage)
+  2. `draft` — mean champion strength of blue picks minus red picks (leave-one-game-out)
+  3. `blue` — intercept (blue-side advantage)
+  4. `first_pick` — +1 if blue had first pick, −1 otherwise
+- **Cross-validation**: 5-fold grouped by `series_id` (seed 7) → log loss, accuracy, baseline log loss.
+
+The React app loads `model.json` (gracefully hides the bar/panel if missing) and shows:
+
+- **WinBar** — horizontal bar above the draft with live blue vs red win %, updating as picks lock. Legend shows the four contributing parts (team form, draft, side, first pick).
+- **AdvisorPanel** — save-or-burn recommendations for the team on the clock. Each champion gets a verdict chip (Take now / Save / Deny) with plain-English reasons. Clicking a row picks the champion.
+
+Run: `python pipeline/build_model.py` after `build_scout.py`.
+
 ## Draft board (step 3)
 
 React + Vite app in `web/`, reading the committed JSON.
@@ -66,7 +86,7 @@ Before every push: `git ls-files | grep -Ei '\.(zst|jsonl|parquet|sqlite|duckdb)
 1. Draft extractor (done)
 2. Opponent scout stats by team and game number -> aggregate JSON (done)
 3. Draft board with Fearless rules (React) (done)
-4. Save/burn advisor + win-probability model
+4. Save-or-burn advisor + win-probability model (done)
 5. Self-scout mode, polish, deploy
 
 ## JetBrains tools

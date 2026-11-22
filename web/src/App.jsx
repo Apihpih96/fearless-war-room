@@ -3,11 +3,13 @@ import {
   ORDER, addGame, bucketOf, burnedBefore, canSelect, newSeries, nextStep, score, select,
   seriesWinner, setWinner, sideOf, teamAt, undo, unavailable, updateGame,
 } from "./draft.js";
-import { loadChampions, loadIndex, loadTeam } from "./data.js";
+import { loadChampions, loadIndex, loadModel, loadTeam } from "./data.js";
 import TeamColumn from "./components/TeamColumn.jsx";
 import ChampionGrid from "./components/ChampionGrid.jsx";
 import ScoutPanel from "./components/ScoutPanel.jsx";
 import SeriesBar from "./components/SeriesBar.jsx";
+import WinBar from "./components/WinBar.jsx";
+import AdvisorPanel from "./components/AdvisorPanel.jsx";
 import { PortraitContext } from "./components/Portrait.jsx";
 
 const SAVE_KEY = "fwr.series.v1";
@@ -30,6 +32,7 @@ function usePersistentSeries() {
 export default function App() {
   const [index, setIndex] = useState(null);
   const [champions, setChampions] = useState([]);
+  const [model, setModel] = useState(null);
   const [series, setSeries] = usePersistentSeries();
   const [reports, setReports] = useState({});
   const [error, setError] = useState(null);
@@ -37,6 +40,7 @@ export default function App() {
   useEffect(() => {
     loadIndex().then(setIndex).catch((e) => setError(String(e)));
     loadChampions().then(setChampions);
+    loadModel().then(setModel); // null is fine — app still works
   }, []);
 
   // default matchup: Cloud9 Kia vs their most frequent LCS 2026 opponent
@@ -105,6 +109,8 @@ export default function App() {
         onReset={() => restart()}
       />
 
+      <WinBar model={model} series={series} game={game} name={name} />
+
       <div className="game-controls">
         <label>
           First pick
@@ -153,8 +159,22 @@ export default function App() {
         turn={turn}
       />
 
+      <AdvisorPanel
+        model={model}
+        series={series}
+        game={game}
+        usReport={reports[series.us]}
+        oppReport={reports[series.opp]}
+        bucket={bucket}
+        blocked={blocked}
+        burned={burned}
+        onPick={pick}
+        turn={turn}
+        name={name}
+      />
+
       <footer className="foot">
-        Built with PyCharm, WebStorm and Junie for the Cloud9 x JetBrains Sky's The Limit Hackathon. Champion art © Riot Games via Data Dragon. Stats are aggregates of GRID esports data.
+        Built with Junie, JetBrains' coding agent for the Cloud9 x JetBrains Sky's The Limit Hackathon. Champion art © Riot Games via Data Dragon. Stats are aggregates of GRID esports data.
       </footer>
     </div>
     </PortraitContext.Provider>
