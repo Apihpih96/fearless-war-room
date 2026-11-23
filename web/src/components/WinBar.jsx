@@ -9,7 +9,7 @@ import { picksOf } from "../draft.js";
  * The left team is always the user's team (first team select), whatever side it plays.
  * winProbability returns P(blue wins), so we map to the user's team correctly.
  */
-export default function WinBar({ model, series, game, name, eloFallback }) {
+export default function WinBar({ model, series, game, name, shortName: sn, eloFallback }) {
   if (!model) return null;
 
   const blueWho = game.usSide === "blue" ? "us" : "opp";
@@ -41,6 +41,8 @@ export default function WinBar({ model, series, game, name, eloFallback }) {
 
   const usName = name("us");
   const oppName = name("opp");
+  const usShort = sn ? sn("us") : usName;
+  const oppShort = sn ? sn("opp") : oppName;
 
   // Parts in "points" (percentage-point contribution to win probability for the user's team)
   // When us is blue, parts are as-is; when us is red, we negate them.
@@ -56,18 +58,18 @@ export default function WinBar({ model, series, game, name, eloFallback }) {
   return (
     <div className="win-bar">
       <div className="win-bar-main">
-        <span className={`win-bar-team win-bar-team--left ${game.usSide}`}>
-          {usName} {usPctStr}%
+        <span className={`win-bar-team win-bar-team--left ${game.usSide}`} title={usName}>
+          {usShort} {usPctStr}%
         </span>
         <div className="win-bar-track">
           <div className="win-bar-fill" style={{ width: `${usPctStr}%`, background: `var(--${game.usSide})` }} />
         </div>
-        <span className={`win-bar-team win-bar-team--right ${game.usSide === "blue" ? "red" : "blue"}`}>
-          {oppPctStr}% {oppName}
+        <span className={`win-bar-team win-bar-team--right ${game.usSide === "blue" ? "red" : "blue"}`} title={oppName}>
+          {oppPctStr}% {oppShort}
         </span>
       </div>
       <div className="win-bar-legend">
-        <span>{usName}: team form {fmt(pts.elo)} pts{usedFallback ? " ⚠ uses 2026 Cloud9 Kia" : ""}</span>
+        <span title={usName}>{usShort}: team form {fmt(pts.elo)} pts{usedFallback ? " ⚠ uses 2026 Cloud9 Kia" : ""}</span>
         <span>·</span>
         <span>draft {fmt(pts.draft)}</span>
         <span>·</span>

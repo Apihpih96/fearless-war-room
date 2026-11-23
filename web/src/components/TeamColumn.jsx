@@ -3,14 +3,15 @@ import { isReportedTeamId } from "../roster.js";
 import Portrait from "./Portrait.jsx";
 
 /** One side of the draft: 5 ban slots and 5 pick slots, highlighting the active step. */
-export default function TeamColumn({ side, who, name, game, step, teamId }) {
+export default function TeamColumn({ side, who, name, shortName: sn, game, step, teamId }) {
   const slots = (type) => ORDER.map((s, i) => ({ ...s, i })).filter((s) => s.type === type && teamAt(game, s.seq) === who);
   const firstPick = game.firstPick === who;
   const isReported = teamId ? isReportedTeamId(teamId) : false;
+  const displayName = sn || name;
   return (
     <section className={`team ${side}`}>
-      <h2>
-        {name}
+      <h2 title={name}>
+        {displayName}
         {isReported && <span className="badge" style={{fontSize:"10px",marginLeft:"6px"}}>reported 2027 roster</span>}
         <small>{side} side{firstPick ? " · first pick" : ""}{game.winner === who ? " · won" : ""}</small>
       </h2>

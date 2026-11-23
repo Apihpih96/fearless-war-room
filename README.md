@@ -3,6 +3,8 @@
 A Fearless Draft prep tool for Cloud9's League of Legends coaches.
 Built for the Cloud9 x JetBrains "Sky's The Limit" Hackathon 2026, Category 2.
 
+**Live demo**: [GitHub Pages](https://cloud9esports.github.io/fearless-war-room/) (placeholder — deploy after merge)
+
 ## Setup
 
 ```
@@ -78,6 +80,23 @@ The web app shows a toggle "2027 reported | 2026 Kia" near the team select, a vi
 
 Run: `python pipeline/build_roster.py` after `build_scout.py`. Re-running is idempotent.
 
+## How to run (no GRID data needed)
+
+The web app reads committed aggregate JSON from `web/public/data/`. You do **not** need GRID data to run it.
+
+```bash
+cd web
+npx vite dev         # http://localhost:5173
+npx vitest run       # JavaScript tests (vitest)
+npx vite build       # static site in web/dist
+```
+
+Python pipeline tests also run without GRID data:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
 ## Draft board (step 3)
 
 React + Vite app in `web/`, reading the committed JSON.
@@ -105,6 +124,7 @@ Before every push: `git ls-files | grep -Ei '\.(zst|jsonl|parquet|sqlite|duckdb)
 4. Save-or-burn advisor + win-probability model (done)
 5. Self-scout mode, polish, deploy
 5a. Reported roster self-scout (done)
+5b. Demo mode, phone layout, ErrorBoundary, GitHub Pages deploy (done 2026-11-23)
 
 ## JetBrains tools
 PyCharm (pipeline), WebStorm (frontend), Junie (coding agent).

@@ -1,0 +1,62 @@
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/workspace/work/jhome/ts/truststore.jks -Djavax.net.ssl.trustStorePassword=changeit -Duser.home=/workspace/work/jhome
+Junie 26.11.2 (4100.11) (pid=12407): log file: /workspace/work/jhome/.junie/logs/log-2026-11-23_191510-pid-12407.log
+Authenticated successfully
+[38;5;78m●[0m [1mOpened file[0m
+[38;5;247m.junie/guidelines.md[0m
+[38;5;247mThe project guidelines file has been opened.[0m
+[38;5;78m●[0m [1mOpened file[0m
+[38;5;247mweb/src/styles.css[0m
+[38;5;247mThe CSS file was opened to examine the current styles. This action supports the goal of fixing horizontal overflow issues on mobile viewports by understanding the existing layout rules.[0m
+[38;5;78m●[0m [1mFound "web/src/*.js" [0m
+[38;5;247mweb/src/App.test.js[0m
+[38;5;247mweb/src/demo.js[0m
+[38;5;247mweb/src/demo.test.js[0m
+[38;5;247mweb/src/names.js[0m
+[38;5;247mweb/src/names.test.js[0m
+[38;5;247m...[0m
+[38;5;247m12 files more[0m
+[38;5;78m●[0m [1mFound "web/src/*.jsx" [0m
+[38;5;247mweb/src/App.jsx[0m
+[38;5;247mweb/src/main.jsx[0m
+[38;5;78m●[0m [1mOpened file[0m
+[38;5;247mweb/src/App.jsx[0m
+[38;5;247mThe App.jsx file has been opened.[0m
+[38;5;78m●[0m [1mOpened file[0m
+[38;5;247mweb/src/components/WinBar.jsx[0m
+[38;5;247mThe WinBar component file has been opened to examine its structure. This follows the previous analysis of header overflow issues, allowing for a review of the win-bar's specific layout and styling constraints.[0m
+[38;5;78m●[0m [1mEdited files[0m
+[38;5;247mUpdated web/src/styles.css[0m
+[38;5;247mThe CSS file was updated to fix horizontal overflow by adjusting flex container widths, enabling text truncation, and refining responsive media queries.[0m
+[38;5;247m! Running: [39;1mcd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1[0m
+[38;5;78m●[0m [1mcd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1[0m
+[38;5;241m| RUN  v4.1.12 /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web[0m
+[38;5;241m| ...[0m
+[38;5;241m| Start at  19:15:43[0m
+[38;5;241m| Duration  1.50s (transform 279ms, setup 0ms, import 391ms, tests 115ms, environment 1ms)[0m
+[38;5;247mThe tests were executed to verify the previously applied CSS changes. All 87 tests across 9 test files passed successfully.[0m
+[38;5;247m! Running: [39;1mcd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build --outDir /tmp/wb/dist 2>&1[0m
+[38;5;78m●[0m [1mcd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build --outDir /tmp/wb/dist 2>&1[0m
+[38;5;241m| vite v7.3.8 building client environment for production...[0m
+[38;5;241m| ...[0m
+[38;5;241m| ../../../../../../tmp/wb/dist/assets/index-DtfF7HIA.js   255.24 kB | gzip: 80.48 kB[0m
+[38;5;241m| ✓ built in 1.13s[0m
+[38;5;247mThe Vite production build completed successfully. The build process transformed 45 modules and generated the output files in the specified directory.[0m
+[38;5;247m! Running: [39;1mrm -rf /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web/dist[0m
+[38;5;78m●[0m [1mrm -rf /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web/dist[0m
+[38;5;247mThe `web/dist` directory has been successfully removed. This cleanup follows the successful Vite build.[0m
+[38;5;78m●[0m [1mTASK RESULT[0m
+[38;5;247mFixed horizontal overflow on phones (360px/412px viewports) caused by flex children expanding beyond viewport width.[0m
+[38;5;247m### Changes[0m
+[38;5;247m- Added `html, body { overflow-x: clip }` as a safety net in `web/src/styles.css`.[0m
+[38;5;247m- Added `min-width: 0` to all flex container chains: `.app`, `.top`, `.brand`, `.brand > div`, `.brand p`, `.matchup`, `.win-bar`, `.win-bar-main`, `.demo-banner`, `.demo-controls` — preventing flex items from inheriting the too-wide min-content size.[0m
+[38;5;247m- At ≤600px: added `max-width: 100%` to `.top > *`, `flex-wrap: wrap` to `.brand`, `white-space: nowrap` + `text-overflow: ellipsis` on `.brand h1` and `.brand p`, `max-width: 100%` on `.matchup select`, `flex-wrap: wrap` on `.matchup .roster-toggle`.[0m
+[38;5;247m- At ≤412px: hid `.brand p` (`display: none`) so the long subtitle no longer forces width.[0m
+[38;5;247m- Added `overflow: hidden` + `text-overflow: ellipsis` on `.win-bar-team` and `flex-shrink: 0` on `.demo-step-count`.[0m
+[38;5;247m### Root cause[0m
+[38;5;247mThe header (`.top`) is a flex container. Its children (`.brand`, `.matchup`) had no `min-width: 0`, so their min-content size (driven by unwrappable text like the subtitle paragraph and button labels) forced the entire header wider than the viewport. Every full-width descendant inherited this oversized box.[0m
+[38;5;247m### Verification[0m
+[38;5;247m- `npx vitest run`: 87/87 tests pass.[0m
+[38;5;247m- `npx vite build --outDir /tmp/wb/dist`: production build succeeds. `web/dist` cleaned up.[0m
+[38;5;247m# FILES[0m
+[38;5;247mUpdated web/src/styles.css[0m
+exit=0
