@@ -3,7 +3,7 @@
 A Fearless Draft prep tool for Cloud9's League of Legends coaches.
 Built for the Cloud9 x JetBrains "Sky's The Limit" Hackathon 2026, Category 2.
 
-**Live demo**: [GitHub Pages](https://cloud9esports.github.io/fearless-war-room/) (placeholder — deploy after merge)
+**Live demo**: https://apihpih96.github.io/fearless-war-room/ (tap **▶ Demo** for an auto-played Fearless draft)
 
 ## Setup
 
