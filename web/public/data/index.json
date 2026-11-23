@@ -529,6 +529,17 @@
    "win_rate": 0.182,
    "file": "teams/48007.json",
    "headline": "They pick Aatrox in 5/11 games (46%), 4.92x the league rate of 9%. Record 1-4."
+  },
+  {
+   "id": "c9-2027",
+   "name": "Cloud9 2027 (reported)",
+   "season": "2027",
+   "league": "LCS",
+   "lcs_2026": false,
+   "reported": true,
+   "file": "teams/c9-2027.json",
+   "games": 142,
+   "headline": "CoreJJ (support) has played 21 unique champions across 113 games."
   }
  ],
  "league": {

@@ -116,7 +116,10 @@ code { background: var(--panel-2); padding: 2px 6px; border-radius: 4px; }
 @media (max-width: 600px) {
   .app { padding: 10px; }
   .top > * { width: 100%; }
+  .matchup { flex-direction: column; align-items: stretch; }
   .matchup select { flex: 1; min-width: 0; }
+  .roster-toggle { justify-content: center; }
+  .vs { text-align: center; }
   .series { gap: 8px; }
   .board { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
   .team { padding: 8px; }
@@ -125,6 +128,10 @@ code { background: var(--panel-2); padding: 2px 6px; border-radius: 4px; }
   .portrait { width: 36px; height: 36px; }
   .pick-slot { min-height: 46px; }
   .pick-name { font-size: 12px; }
+  .roster-badge { justify-content: center; }
+  .badge { font-size: 10px; }
+  .roster-table { font-size: 11px; }
+  .roster-table th, .roster-table td { padding: 3px 4px; }
 }
 .ban-slot .portrait { width: 100%; height: 100%; }
 
@@ -222,3 +229,38 @@ code { background: var(--panel-2); padding: 2px 6px; border-radius: 4px; }
   .win-bar-team { min-width: 60px; font-size: 12px; }
   .advisor { padding: 10px; }
 }
+
+/* Reported roster badge and toggle */
+.roster-badge { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #5a4a10;
+  color: #f2c14e;
+  white-space: nowrap;
+}
+.badge.flag { background: #7a2a1a; color: #ff9a8a; }
+.roster-toggle { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.roster-toggle button {
+  border: none;
+  border-radius: 0;
+  padding: 4px 10px;
+  font-size: 11px;
+  background: var(--panel-2);
+  color: var(--muted);
+}
+.roster-toggle button.active { background: #0d2a3a; color: var(--c9); font-weight: 700; }
+.roster-toggle button:hover:not(.active) { border-color: transparent; }
+
+/* Roster pools table */
+.roster-pools { margin-top: 10px; }
+.roster-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.roster-table th, .roster-table td { padding: 4px 8px; text-align: left; border-bottom: 1px solid var(--line); }
+.roster-table th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; }
+.roster-table tr.no-data { opacity: 0.5; }
+.roster-table tr.no-data td { color: var(--muted); }
+.status-ok { color: #4ade80; }
+.status-thin { color: #f2c14e; }
+.status-no_data { color: #ff9a8a; }

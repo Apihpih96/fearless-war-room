@@ -9,15 +9,18 @@ import { picksOf } from "../draft.js";
  * The left team is always the user's team (first team select), whatever side it plays.
  * winProbability returns P(blue wins), so we map to the user's team correctly.
  */
-export default function WinBar({ model, series, game, name }) {
+export default function WinBar({ model, series, game, name, eloFallback }) {
   if (!model) return null;
 
   const blueWho = game.usSide === "blue" ? "us" : "opp";
   const redWho = blueWho === "us" ? "opp" : "us";
 
-  // Resolve team IDs
-  const blueId = blueWho === "us" ? series.us : series.opp;
-  const redId = redWho === "us" ? series.us : series.opp;
+  // Resolve team IDs with Elo fallback for reported rosters
+  let blueId = blueWho === "us" ? series.us : series.opp;
+  let redId = redWho === "us" ? series.us : series.opp;
+  const usedFallback = eloFallback ? (eloFallback(blueId, model) !== blueId || eloFallback(redId, model) !== redId) : false;
+  blueId = eloFallback ? eloFallback(blueId, model) : blueId;
+  redId = eloFallback ? eloFallback(redId, model) : redId;
 
   const bluePicks = picksOf(game, blueWho);
   const redPicks = picksOf(game, redWho);
@@ -64,7 +67,7 @@ export default function WinBar({ model, series, game, name }) {
         </span>
       </div>
       <div className="win-bar-legend">
-        <span>{usName}: team form {fmt(pts.elo)} pts</span>
+        <span>{usName}: team form {fmt(pts.elo)} pts{usedFallback ? " ⚠ uses 2026 Cloud9 Kia" : ""}</span>
         <span>·</span>
         <span>draft {fmt(pts.draft)}</span>
         <span>·</span>

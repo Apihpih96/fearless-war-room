@@ -1,8 +1,9 @@
 import { contested, favoritesStatus, likelyBans, likelyPicks } from "../scout.js";
+import { isReportedRoster, getRosterFlags, rosterSummary, isReportedTeamId } from "../roster.js";
 import Portrait from "./Portrait.jsx";
 
 /** Live scouting for the current game: what the opponent is likely to do next. */
-export default function ScoutPanel({ bucket, gameNumber, opp, us, blocked, burned, bannedNow, onPick, turn }) {
+export default function ScoutPanel({ bucket, gameNumber, opp, us, blocked, burned, bannedNow, onPick, turn, usTeamId, oppTeamId }) {
   if (!opp) return <section className="scout">Loading scouting report…</section>;
   const oppPicks = likelyPicks(opp, bucket, blocked, 8);
   const oppBans = likelyBans(opp, bucket, blocked, 6);
@@ -12,17 +13,38 @@ export default function ScoutPanel({ bucket, gameNumber, opp, us, blocked, burne
   const s = opp.sample;
   const g = s.by_bucket[bucket];
   const shift = opp.fearless.by_bucket[bucket];
+  const isReported = isReportedRoster(opp);
+  const flags = getRosterFlags(opp);
+
+  // Show roster pools card whenever either side is c9-2027
+  const eitherSideReported = isReportedTeamId(usTeamId) || isReportedTeamId(oppTeamId);
+  // Pick the reported roster report (us or opp)
+  const reportedReport = isReportedRoster(us) ? us : isReportedRoster(opp) ? opp : null;
 
   return (
     <section className="scout">
       <header>
         <h2>Scouting {opp.team.name} · Game {gameNumber}</h2>
+        {isReported && (
+          <div className="roster-badge">
+            <span className="badge">⚠ reported 2027 roster, not official</span>
+            {flags.map((f, i) => (<span key={i} className="badge flag">{f}</span>))}
+          </div>
+        )}
+        {eitherSideReported && isReportedRoster(us) && (
+          <div className="roster-badge">
+            <span className="badge">⚠ Cloud9 2027 roster pools (reported, not official)</span>
+            {getRosterFlags(us).map((f, i) => (<span key={i} className="badge flag">{f}</span>))}
+          </div>
+        )}
         <p>
           {s.series} series, {s.games} games in {opp.team.season} ({s.wins}-{s.games - s.wins}). In {bucket}:{" "}
           {g.wins}-{g.games - g.wins}
           {bucket !== "G1" && `, ${shift.new_vs_g1_pool.label} picks were champions they never played in a G1`}.
         </p>
       </header>
+
+      {eitherSideReported && reportedReport && <RosterPoolsCard report={reportedReport} />}
 
       <div className="scout-cols">
         <Card title={`Likely ${opp.team.name} picks`} hint="This game number, minus everything locked">
@@ -39,7 +61,7 @@ export default function ScoutPanel({ bucket, gameNumber, opp, us, blocked, burne
                 <div>
                   <span className="fav-head"><b>{f.champion}</b> <em>{f.status}</em></span>
                   <small>
-                    {f.g1_picks.label} G1s{f.player ? ` · ${f.player}` : ""}
+                    {f.g1_picks.label} G1s{f.player ? ` · ${f.player}${f.role ? ` (${f.role})` : ""}` : ""}
                     {f.replacements.length > 0 && ` → ${f.replacements.slice(0, 2).map((r) => `${r.champion} ${r.label}`).join(", ")}`}
                   </small>
                 </div>
@@ -96,5 +118,35 @@ function ChampList({ items, onPick, turn }) {
         </li>
       ))}
     </ul>
+  );
+}
+
+function RosterPoolsCard({ report }) {
+  const summary = rosterSummary(report);
+  return (
+    <div className="card roster-pools">
+      <h3>Roster pools</h3>
+      <p className="muted">Each player's champion pool from their own games</p>
+      <table className="roster-table">
+        <thead>
+          <tr><th>Role</th><th>Player</th><th>Status</th><th>Games</th><th>Top 3</th></tr>
+        </thead>
+        <tbody>
+          {summary.map((p) => (
+            <tr key={p.player} className={p.status === "no_data" ? "no-data" : ""}>
+              <td>{p.role}</td>
+              <td><b>{p.player}</b></td>
+              <td><span className={`status-${p.status}`}>{p.status === "no_data" ? "No GRID data" : p.status === "thin" ? "⚠ thin" : "✓"}</span></td>
+              <td>{p.games}</td>
+              <td>
+                {p.top.length > 0
+                  ? p.top.map((t) => `${t.champion} (${t.games})`).join(", ")
+                  : "—"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

@@ -1,0 +1,262 @@
+Junie 26.11.2 (4100.11) (pid=7067): log file: /workspace/work/jhome/.junie/logs/log-2026-11-23_185530-pid-7067.log
+Authenticated successfully
+● Opened file
+.junie/guidelines.md
+The project guidelines were reviewed to understand the application structure and rules. This establishes the context for fixing the four identified bugs.
+● Found "pipeline/**/*.py" 
+pipeline/build_roster.py
+pipeline/build_model.py
+pipeline/build_scout.py
+pipeline/extract_drafts.py
+● Opened file
+pipeline/build_roster.py
+The `build_roster.py` file has been opened.
+● Found "web/src/*.js" 
+web/src/roster.js
+web/src/roster.test.js
+web/src/advisor.js
+web/src/advisor.test.js
+web/src/data.js
+...
+7 files more
+● Opened file
+web/src/roster.js
+The roster.js file has been opened.
+● Opened file
+web/src/data.js
+The data.js file has been opened.
+● Found "web/src/*.jsx" 
+web/src/App.jsx
+web/src/main.jsx
+● Opened file
+web/src/App.jsx
+The App.jsx file has been opened.
+● Opened file
+web/src/scout.js
+The scout.js file has been opened.
+● Found "web/src/components/*.jsx" 
+web/src/components/AdvisorPanel.jsx
+web/src/components/ChampionGrid.jsx
+web/src/components/Portrait.jsx
+web/src/components/ScoutPanel.jsx
+web/src/components/SeriesBar.jsx
+...
+2 files more
+● Opened file
+web/src/components/ScoutPanel.jsx
+The ScoutPanel component file has been opened.
+● Opened file
+web/src/roster.test.js
+The roster test file was opened to review the existing tests.
+● Found "tests/*.py" 
+tests/test_build_roster.py
+tests/test_build_model.py
+tests/test_build_scout.py
+● Opened file
+tests/test_build_roster.py
+The test file for the roster build pipeline has been opened.
+● Found "web/src/*.css" 
+web/src/styles.css
+● Opened file
+web/src/styles.css
+The styles.css file has been opened.
+● Found "web/public/data/*.json" 
+web/public/data/champions.json
+web/public/data/index.json
+web/public/data/model.json
+● Opened file
+web/public/data/index.json
+The index.json file containing esports team and champion data has been opened.
+● Found "web/public/data/teams/*.json" 
+web/public/data/teams/c9-2027.json
+web/public/data/teams/106.json
+web/public/data/teams/20484.json
+web/public/data/teams/3389.json
+web/public/data/teams/340.json
+...
+40 files more
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    data = json.load(f)
+# Check Vi and Orianna
+for c in data.get('champions', []):
+    if c['champion'] in ('Vi', 'Orianna'):
+        print(f\"{c['champion']}: picks={c['picks']}, by_bucket={c.get('by_bucket', {})}\")
+# Check sample
+print('sample:', json.dumps(data.get('sample', {}), indent=2)[:500])
+# Check top picks
+print('top picks:', json.dumps(data.get('top', {}), indent=2)[:500])
+"
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    data = json.load(f)
+# Check Vi and Orianna
+for c in data.get('champions', []):
+    if c['champion'] in ('Vi', 'Orianna'):
+        print(f\"{c['champion']}: picks={c['picks']}, by_bucket={c.get('by_bucket', {})}\")
+# Check sample
+print('sample:', json.dumps(data.get('sample', {}), indent=2)[:500])
+# Check top picks
+print('top picks:', json.dumps(data.get('top', {}), indent=2)[:500])
+"
+
+| Vi: picks={'n': 18, 'of': 231, 'rate': 0.078, 'label': '18/231', 'wins': 12, 'win_rate': 0.667, 'record': '12-6'}, by_bucket={'G1': {'picks': {'n': 13, 'of': 89, 'rate': 0.146, 'label': '13/89'}, 'win_rate': 0.692}, 'G2': {'picks': {'n': 2, 'of': 73, 'rate': 0.027, 'label': '2/73'}, 'win_rate': 1.0}, 'G3+': {'picks': {'n': 3, 'of': 69, 'rate': 0.043, 'label': '3/69'}, 'win_rate': 0.333}}
+| ...
+| "of": 89,
+| "rate": 0.079,
+The command successfully retrieved and displayed pick rates, win rates, and bucket statistics for Vi and Orianna, along with sample and top pick data from the JSON file.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    data = json.load(f)
+for p in data.get('players', []):
+    print(f\"{p['player']} ({p['role']}): {p['games']} games, status={p['status']}\")
+print()
+# Check sample.per_player
+print('sample.per_player:', data.get('sample', {}).get('per_player'))
+"
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    data = json.load(f)
+for p in data.get('players', []):
+    print(f\"{p['player']} ({p['role']}): {p['games']} games, status={p['status']}\")
+print()
+# Check sample.per_player
+print('sample.per_player:', data.get('sample', {}).get('per_player'))
+"
+
+| Frog (top): 0 games, status=no_data
+| ...
+| CoreJJ (support): 113 games, status=ok
+| sample.per_player: None
+Player game counts were retrieved, confirming the missing `sample.per_player` data needed to fix the roster calculation bug.
+● Edited files
+Updated pipeline/build_roster.py
+The `build_roster.py` file has been updated to refine champion statistics by using the top player's game count as the denominator for pick rates and bucket calculations.
+● Edited files
+Updated pipeline/build_roster.py
+The `top_picks_for_bucket` function in `build_roster.py` has been updated to use per-player denominators for calculating pick rates.
+● Edited files
+Updated pipeline/build_roster.py
+The `per_player` field has been added to the sample output in the report.
+● Edited files
+Updated web/src/roster.js
+The `defaultOpponent` helper function was added to `roster.js` to implement logic for selecting a default opponent while excluding specific team IDs.
+● Edited files
+Updated web/src/App.jsx
+The App.jsx file has been updated to import the `defaultOpponent` helper from roster.js.
+● Edited files
+Updated web/src/App.jsx
+The default matchup logic in App.jsx was updated to use the `defaultOpponent` function for selecting the opponent.
+● Edited files
+Updated web/src/components/ScoutPanel.jsx
+The ScoutPanel component was updated to render the roster pools card when either team is identified as a reported 2027 roster.
+● Edited files
+Updated web/src/App.jsx
+The App.jsx file has been updated to pass the `usTeamId` and `oppTeamId` props to the ScoutPanel component.
+● Edited files
+Updated web/src/styles.css
+Mobile CSS styles for the roster toggle and badge at 412px have been updated in the stylesheet.
+● Edited files
+Updated tests/test_build_roster.py
+Tests for champion pick denominators and per-player statistics were added to the test file.
+● Edited files
+Updated web/src/roster.test.js
+The `defaultOpponent` import was added to the roster test file.
+● Edited files
+Updated web/src/roster.test.js
+The roster test file has been updated to include a new test suite for the `defaultOpponent` function.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 pipeline/build_roster.py 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 pipeline/build_roster.py 2>&1
+| ✗ Frog (top): no_data – 0 games, teams: []
+| ...
+| Alistar: 9 games (4-5)
+| Neeko: 9 games (6-3)
+The Python pipeline executed successfully, processing roster data for five players and updating the team and index JSON files.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    data = json.load(f)
+for c in data.get('champions', []):
+    if c['champion'] in ('Vi', 'Orianna'):
+        print(f\"{c['champion']}: picks={c['picks']}, by_bucket={json.dumps(c.get('by_bucket', {}))}\")
+print()
+# Check sample.per_player
+pp = data.get('sample', {}).get('per_player')
+print('sample.per_player:', json.dumps(pp, indent=2)[:500])
+# Check top picks
+print()
+print('top G1 picks:', json.dumps(data.get('top', {}).get('picks', {}).get('G1', [])[:3]))
+"
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    data = json.load(f)
+for c in data.get('champions', []):
+    if c['champion'] in ('Vi', 'Orianna'):
+        print(f\"{c['champion']}: picks={c['picks']}, by_bucket={json.dumps(c.get('by_bucket', {}))}\")
+print()
+# Check sample.per_player
+pp = data.get('sample', {}).get('per_player')
+print('sample.per_player:', json.dumps(pp, indent=2)[:500])
+# Check top picks
+print()
+print('top G1 picks:', json.dumps(data.get('top', {}).get('picks', {}).get('G1', [])[:3]))
+"
+
+| Vi: picks={'n': 18, 'of': 142, 'rate': 0.127, 'label': '18/142', 'wins': 12, 'win_rate': 0.667, 'record': '12-6'}, by_bucket={"G1": {"picks": {"n": 13, "of": 53, "rate": 0.245, "label": "13/53"}, "win_rate": 0.692}, "G2": {"picks": {"n": 2, "of": 45, "rate": 0.044, "label": "2/45"}, "win_rate": 1.0}, "G3+": {"picks": {"n": 3, "of": 44, "rate": 0.068, "label": "3/44"}, "win_rate": 0.333}}
+| ...
+| "G1": 46,
+| top G1 picks: [{"champion": "Vi", "n": 13, "of": 53, "rate": 0.245, "label": "13/53"}, {"champion": "Azir", "n": 9, "of": 37, "rate": 0.243, "label": "9/37"}, {"champion": "Corki", "n": 7, "of": 46, "rate": 0.152, "label": "7/46"}]
+The Vi and Orianna pick statistics, per-player sample data, and top G1 picks were successfully retrieved from the regenerated JSON file.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest discover -s tests -v 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest discover -s tests -v 2>&1
+| /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/pipeline/build_model.py:64: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp90gpauet/games.csv' mode='r' encoding='utf-8'>
+| ...
+| model.json written: 55 champions, 2 teams, CV log_loss=0.0068, accuracy=1.0000
+| 2 team reports (2 LCS 2026) -> /tmp/tmp4_b6h2nh/out
+All 32 tests passed successfully, confirming that Bug 1 is fixed and the champion pick denominators now correctly use individual player game counts.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1
+| RUN  v4.1.12 /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web
+| ...
+| Start at  18:57:34
+| Duration  912ms (transform 125ms, setup 0ms, import 149ms, tests 93ms, environment 0ms)
+The vitest tests passed, with all 62 tests across 6 test files succeeding.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build --outDir /tmp/wb/dist 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build --outDir /tmp/wb/dist 2>&1
+| vite v7.3.8 building client environment for production...
+| ...
+| ../../../../../../tmp/wb/dist/assets/index-D0t2FhVp.js   248.15 kB | gzip: 78.27 kB
+| ✓ built in 1.17s
+The Vite build completed successfully, generating the production assets in the specified output directory.
+! Running: rm -rf /tmp/wb/dist && cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && rm -rf web/dist 2>&1
+● rm -rf /tmp/wb/dist && cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && rm -rf web/dist 2>&1
+The build artifacts have been successfully cleaned up.
+● TASK RESULT
+Fixed 4 bugs in the Fearless War Room Step 5a roster self-scout:
+### Changes
+- **Bug 1 – Wrong denominators**: In `pipeline/build_roster.py`, champion `picks.of` and `by_bucket.<G>.picks.of` now use the **top player's own game count** instead of the union of all roster games. Added `sample.per_player` dict with per-player `{games, by_bucket}`. `top.picks` labels likewise use per-player bucket counts.
+- **Bug 2 – Default opponent**: Added `defaultOpponent(usId, teams)` pure helper in `web/src/roster.js` that excludes both `"c9-2027"` and `"47351"` from auto-selection, preferring the first LCS 2026 team. Updated `App.jsx` to use it.
+- **Bug 3 – Roster pools card**: `ScoutPanel.jsx` now renders the roster pools card and flag badges whenever **either side** is c9-2027 (not just when it's the opponent). Added `usTeamId`/`oppTeamId` props.
+- **Bug 4 – Mobile layout**: Added `@media (max-width: 600px)` rules for `.matchup` (column layout), `.roster-toggle`, `.roster-badge`, `.badge`, and `.roster-table` to prevent overflow at 412px.
+### Verification
+- `python3 pipeline/build_roster.py` ✓ – Vi: "18/142" (was "18/231"), Orianna: "11/96" (was "11/231")
+- `python3 -m unittest discover -s tests -v` ✓ – 32/32 passed (4 new denominator tests added)
+- `cd web && npx vitest run` ✓ – 62/62 passed (8 new defaultOpponent tests added)
+- `cd web && npx vite build --outDir /tmp/wb/dist` ✓ – clean build, then `rm -rf web/dist`
+### Notes
+- No commits made per instructions.
+- ResourceWarnings in build_model.py are pre-existing and out of scope.
+# FILES
+Updated pipeline/build_roster.py
+Updated web/src/roster.js
+Updated web/src/App.jsx
+Updated web/src/components/ScoutPanel.jsx
+Updated web/src/styles.css
+Updated tests/test_build_roster.py
+Updated web/src/roster.test.js
+exit=0

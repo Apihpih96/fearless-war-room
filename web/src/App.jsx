@@ -4,6 +4,7 @@ import {
   seriesWinner, setWinner, sideOf, teamAt, undo, unavailable, updateGame,
 } from "./draft.js";
 import { loadChampions, loadIndex, loadModel, loadTeam } from "./data.js";
+import { isReportedTeamId, getEloFallbackTeamId, defaultOpponent } from "./roster.js";
 import TeamColumn from "./components/TeamColumn.jsx";
 import ChampionGrid from "./components/ChampionGrid.jsx";
 import ScoutPanel from "./components/ScoutPanel.jsx";
@@ -13,7 +14,8 @@ import AdvisorPanel from "./components/AdvisorPanel.jsx";
 import { PortraitContext } from "./components/Portrait.jsx";
 
 const SAVE_KEY = "fwr.series.v1";
-const C9 = "47351";
+const C9_2027 = "c9-2027";
+const C9_2026 = "47351";
 
 function usePersistentSeries() {
   const [series, setSeries] = useState(() => {
@@ -43,9 +45,9 @@ export default function App() {
     loadModel().then(setModel); // null is fine — app still works
   }, []);
 
-  // default matchup: Cloud9 Kia vs their most frequent LCS 2026 opponent
+  // default matchup: Cloud9 2027 reported roster vs first non-C9 LCS 2026 opponent
   useEffect(() => {
-    if (index && !series) setSeries(newSeries({ us: C9, opp: index.teams.find((t) => t.lcs_2026 && t.id !== C9)?.id, format: 3 }));
+    if (index && !series) setSeries(newSeries({ us: C9_2027, opp: defaultOpponent(C9_2027, index.teams), format: 3 }));
   }, [index, series, setSeries]);
 
   const images = useMemo(() => Object.fromEntries(champions.filter((c) => c.img).map((c) => [c.name, c.img])), [champions]);
@@ -90,8 +92,20 @@ export default function App() {
         </div>
         <div className="matchup">
           <TeamSelect label="Us" value={series.us} teams={index.teams} onChange={(us) => restart({ us })} />
+          {isReportedTeamId(series.us) && (
+            <span className="roster-toggle" title="Switch between 2027 reported roster and 2026 Cloud9 Kia">
+              <button className={series.us === C9_2027 ? "active" : ""} onClick={() => restart({ us: C9_2027 })}>2027 reported</button>
+              <button className={series.us === C9_2026 ? "active" : ""} onClick={() => restart({ us: C9_2026 })}>2026 Kia</button>
+            </span>
+          )}
           <span className="vs">vs</span>
           <TeamSelect label="Opponent" value={series.opp} teams={index.teams} onChange={(opp) => restart({ opp })} />
+          {isReportedTeamId(series.opp) && (
+            <span className="roster-toggle" title="Switch between 2027 reported roster and 2026 Cloud9 Kia">
+              <button className={series.opp === C9_2027 ? "active" : ""} onClick={() => restart({ opp: C9_2027 })}>2027 reported</button>
+              <button className={series.opp === C9_2026 ? "active" : ""} onClick={() => restart({ opp: C9_2026 })}>2026 Kia</button>
+            </span>
+          )}
           <select aria-label="Format" value={series.format} onChange={(e) => restart({ format: Number(e.target.value) })}>
             <option value={3}>Bo3</option>
             <option value={5}>Bo5</option>
@@ -109,7 +123,7 @@ export default function App() {
         onReset={() => restart()}
       />
 
-      <WinBar model={model} series={series} game={game} name={name} />
+      <WinBar model={model} series={series} game={game} name={name} eloFallback={getEloFallbackTeamId} />
 
       <div className="game-controls">
         <label>
@@ -142,9 +156,9 @@ export default function App() {
       </div>
 
       <main className="board">
-        <TeamColumn side="blue" who={blueWho} name={name(blueWho)} game={game} step={step} />
+        <TeamColumn side="blue" who={blueWho} name={name(blueWho)} game={game} step={step} teamId={blueWho === "us" ? series.us : series.opp} />
         <ChampionGrid champions={champions} blocked={blocked} burned={burned} onPick={pick} disabled={step === -1} turn={turn} />
-        <TeamColumn side="red" who={redWho} name={name(redWho)} game={game} step={step} />
+        <TeamColumn side="red" who={redWho} name={name(redWho)} game={game} step={step} teamId={redWho === "us" ? series.us : series.opp} />
       </main>
 
       <ScoutPanel
@@ -152,6 +166,8 @@ export default function App() {
         gameNumber={series.current + 1}
         opp={reports[series.opp]}
         us={reports[series.us]}
+        usTeamId={series.us}
+        oppTeamId={series.opp}
         blocked={blocked}
         burned={burned}
         bannedNow={new Set(game.actions.filter((c, i) => c && ORDER[i].type === "ban"))}

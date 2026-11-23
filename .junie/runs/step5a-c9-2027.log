@@ -1,0 +1,423 @@
+Junie 26.11.2 (4100.11) (pid=4844): log file: /workspace/work/jhome/.junie/logs/log-2026-11-23_185047-pid-4844.log
+Authenticated successfully
+● Opened file
+.junie/guidelines.md
+The project guidelines were reviewed to understand the structure and rules for the Cloud9 x JetBrains Hackathon.
+● Opened file
+pipeline/build_scout.py
+The build_scout.py file has been opened.
+● Found "web/public/data/**/*.json" 
+web/public/data/champions.json
+web/public/data/index.json
+web/public/data/model.json
+web/public/data/teams/106.json
+web/public/data/teams/20484.json
+...
+42 files more
+● Opened file
+web/public/data/teams/47351.json
+The team data file was opened, but its contents are too large to be fully displayed or edited.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/47351.json') as f:
+    d = json.load(f)
+# Print top-level keys and structure
+for k in d:
+    v = d[k]
+    if isinstance(v, list):
+        print(f'{k}: list[{len(v)}]')
+        if v:
+            print(f'  [0] keys: {list(v[0].keys()) if isinstance(v[0], dict) else type(v[0])}')
+    elif isinstance(v, dict):
+        print(f'{k}: dict keys={list(v.keys())}')
+    else:
+        print(f'{k}: {type(v).__name__} = {v!r}')
+"
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/47351.json') as f:
+    d = json.load(f)
+# Print top-level keys and structure
+for k in d:
+    v = d[k]
+    if isinstance(v, list):
+        print(f'{k}: list[{len(v)}]')
+        if v:
+            print(f'  [0] keys: {list(v[0].keys()) if isinstance(v[0], dict) else type(v[0])}')
+    elif isinstance(v, dict):
+        print(f'{k}: dict keys={list(v.keys())}')
+    else:
+        print(f'{k}: {type(v).__name__} = {v!r}')
+"
+
+| team: dict keys=['id', 'name', 'season', 'events']
+| ...
+| insights: list[4]
+| [0] keys: ['score', 'question', 'id', 'title', 'text', 'evidence']
+The structure of the team data file was inspected, revealing top-level keys for team, sample, champions, top, fearless, players, and insights along with their respective data types and sub-keys.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/47351.json') as f:
+    d = json.load(f)
+# Print sample details
+print('=== team ===')
+print(json.dumps(d['team'], indent=2))
+print('=== sample ===')
+s = d['sample']
+for k,v in s.items():
+    if isinstance(v, dict):
+        print(f'  {k}:')
+        for k2,v2 in v.items():
+            print(f'    {k2}: {v2}')
+    else:
+        print(f'  {k}: {v}')
+print('=== fearless ===')
+fl = d['fearless']
+print('  favorites:', fl['favorites'])
+print('  by_bucket keys:', list(fl['by_bucket'].keys()))
+print('  by_bucket G1:', json.dumps(fl['by_bucket']['G1'], indent=4))
+print('  when_favorites_locked[0] keys:', list(fl['when_favorites_locked'][0].keys()) if fl['when_favorites_locked'] else 'empty')
+if fl['when_favorites_locked']:
+    print('  when_favorites_locked[0]:', json.dumps(fl['when_favorites_locked'][0], indent=2))
+print('=== players[0] ===')
+if d['players']:
+    print(json.dumps(d['players'][0], indent=2))
+print('=== top ===')
+for k,v in d['top'].items():
+    if isinstance(v, dict):
+        print(f'  {k}: {list(v.keys())}')
+    else:
+        print(f'  {k}: list[{len(v)}]')
+"
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/teams/47351.json') as f:
+    d = json.load(f)
+# Print sample details
+print('=== team ===')
+print(json.dumps(d['team'], indent=2))
+print('=== sample ===')
+s = d['sample']
+for k,v in s.items():
+    if isinstance(v, dict):
+        print(f'  {k}:')
+        for k2,v2 in v.items():
+            print(f'    {k2}: {v2}')
+    else:
+        print(f'  {k}: {v}')
+print('=== fearless ===')
+fl = d['fearless']
+print('  favorites:', fl['favorites'])
+print('  by_bucket keys:', list(fl['by_bucket'].keys()))
+print('  by_bucket G1:', json.dumps(fl['by_bucket']['G1'], indent=4))
+print('  when_favorites_locked[0] keys:', list(fl['when_favorites_locked'][0].keys()) if fl['when_favorites_locked'] else 'empty')
+if fl['when_favorites_locked']:
+    print('  when_favorites_locked[0]:', json.dumps(fl['when_favorites_locked'][0], indent=2))
+print('=== players[0] ===')
+if d['players']:
+    print(json.dumps(d['players'][0], indent=2))
+print('=== top ===')
+for k,v in d['top'].items():
+    if isinstance(v, dict):
+        print(f'  {k}: {list(v.keys())}')
+    else:
+        print(f'  {k}: list[{len(v)}]')
+"
+
+| === team ===
+| ...
+| picks_by_side: ['blue', 'red']
+| bans_by_side: ['blue', 'red']
+The structure and content of the team data file for Cloud9 Kia were successfully inspected and printed.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/index.json') as f:
+    d = json.load(f)
+print('top keys:', list(d.keys()))
+print('teams count:', len(d['teams']))
+# Show first team entry
+print('team[0]:', json.dumps(d['teams'][0], indent=2))
+"
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -c "
+import json
+with open('web/public/data/index.json') as f:
+    d = json.load(f)
+print('top keys:', list(d.keys()))
+print('teams count:', len(d['teams']))
+# Show first team entry
+print('team[0]:', json.dumps(d['teams'][0], indent=2))
+"
+
+| top keys: ['generated_at', 'source', 'teams', 'league']
+| ...
+| "headline": "They pick or ban Orianna in 33/78 games (42%): 10 picks (8-2) and 23 bans."
+| }
+The index.json file was inspected, revealing 44 teams and top-level keys including generated_at, source, teams, and league.
+● Found "web/src/*.js" 
+web/src/advisor.js
+web/src/advisor.test.js
+web/src/data.js
+web/src/data.test.js
+web/src/draft.js
+...
+5 files more
+● Found "web/src/*.jsx" 
+web/src/App.jsx
+web/src/main.jsx
+● Found "web/src/**/*.jsx" 
+web/src/App.jsx
+web/src/components/AdvisorPanel.jsx
+web/src/components/ChampionGrid.jsx
+web/src/components/Portrait.jsx
+web/src/components/ScoutPanel.jsx
+...
+4 files more
+● Opened file
+web/src/scout.js
+The scout.js file has been opened to view its contents.
+● Opened file
+web/src/advisor.js
+The advisor.js file has been opened.
+● Opened file
+web/src/model.js
+The model.js file has been opened.
+● Opened file
+web/src/data.js
+The data.js file has been opened to view its contents.
+● Opened file
+web/src/App.jsx
+The App.jsx file has been opened.
+● Opened file
+web/src/components/ScoutPanel.jsx
+The ScoutPanel component file has been opened.
+● Opened file
+web/src/components/WinBar.jsx
+The WinBar.jsx file has been opened.
+● Opened file
+web/src/model.test.js
+The model test file has been opened.
+● Opened file
+web/src/draft.js
+The draft.js file has been opened to view its contents.
+● Opened file
+README.md
+The README file for the Fearless War Room project has been opened.
+● The attempt to open the tests directory failed because the path specified is a directory rather than a file.
+● Found "tests/*.py" 
+tests/test_build_model.py
+tests/test_build_scout.py
+● Opened file
+tests/test_build_scout.py
+The test file for the opponent scout has been opened.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && head -3 cache/games.csv && echo "---" && head -3 cache/drafts.csv
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && head -3 cache/games.csv && echo "---" && head -3 cache/drafts.csv
+| series_id,game_id,game_number,patch,event,stage,date,format,blue_id,blue_name,red_id,red_name,winner_id,blue_picks,red_picks,blue_bans,red_bans,burned_before
+| ...
+| 2754338,a314f0ab-93ec-4567-9eaf-db1fca0067f3,1,15.1,LCK - LCK Cup 2025,Groups,2025-01-15T08:09:43.120Z,1,ban,52817,OKSavingsBank BRION,blue,47961,DRX,Ashe,cdfefdba-3f62-3d3a-b20d-62e9d7a474e1,1
+| 2754338,a314f0ab-93ec-4567-9eaf-db1fca0067f3,1,15.1,LCK - LCK Cup 2025,Groups,2025-01-15T08:09:43.120Z,2,ban,47961,DRX,red,52817,OKSavingsBank BRION,Kalista,a0cf8bf6-39d8-30fb-9dab-c1e8af747901,0
+The formats of the games and drafts CSV files were inspected to verify their structure. The command successfully retrieved the first few lines of both files, confirming the presence of expected headers and data entries.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && head -5 ../stl-hackathon-2026-grid-starter/meta/rosters.csv 2>/dev/null && echo "---" && head -5 ../stl-hackathon-2026-grid-starter/meta/players.csv 2>/dev/null
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && head -5 ../stl-hackathon-2026-grid-starter/meta/rosters.csv 2>/dev/null && echo "---" && head -5 ../stl-hackathon-2026-grid-starter/meta/players.csv 2>/dev/null
+| title,series_id,game_id,game_number,team_id,team_name,side,player_id,player_name,character_id,character_name,participation_status,session
+| ...
+| lol,24130,Ablazeolive,,57774,Cupid Esports,57774,3,2026-10-06T21:00:00Z,2026-10-10T21:00:00Z
+| lol,20131,Ackerman,,54284,Isurus,54284,22,2025-01-26T16:00:00Z,2025-08-24T16:00:00Z
+The first five lines of the rosters and players CSV files were successfully displayed.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && grep -i "blaber\|loki\|yeon\|corejj\|frog" ../stl-hackathon-2026-grid-starter/meta/players.csv 2>/dev/null | head -20
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && grep -i "blaber\|loki\|yeon\|corejj\|frog" ../stl-hackathon-2026-grid-starter/meta/players.csv 2>/dev/null | head -20
+| lol,24165,Blaber,,47351,Cloud9 Kia,47351,53,2025-01-26T00:00:00Z,2026-10-03T20:00:00Z
+| ...
+| lol,28725,Pungyeon,,3483,DN FREECS,3483,5,2025-01-25T09:00:00Z,2025-05-04T08:00:00Z
+| lol,21655,Yeon,,47363,Team Liquid Alienware,47363,46,2025-01-27T00:00:00Z,2026-09-27T20:00:00Z
+The command successfully retrieved player records for Blaber, CoreJJ, Loki, Pungyeon, and Yeon from the players CSV file.
+● Edited files
+Created pipeline/build_roster.py
+The `build_roster.py` script has been created to generate a scouting report for the Cloud9 2027 reported roster. It aggregates player data from GRID records to produce team statistics and updates the web application's index.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 pipeline/build_roster.py 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 pipeline/build_roster.py 2>&1
+| ✗ Frog (top): no_data – 0 games, teams: []
+| ...
+| Alistar: 9 games (4-5)
+| Neeko: 9 games (6-3)
+The build_roster.py script ran successfully, processing player data and updating the team roster JSON files.
+● Edited files
+Created tests/test_build_roster.py
+A comprehensive test suite for the roster building pipeline has been created using synthetic data. The tests cover various scenarios including name matching, player status flags, win records, and output structure validation.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest discover -s tests -v 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest discover -s tests -v 2>&1
+| /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/pipeline/build_model.py:64: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpji8giuzp/games.csv' mode='r' encoding='utf-8'>
+| ...
+| model.json written: 55 champions, 2 teams, CV log_loss=0.0068, accuracy=1.0000
+| 2 team reports (2 LCS 2026) -> /tmp/tmptw06rvk3/out
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && grep -A 10 "test_no_game_id_or_series_id_in_output" /tmp/junie-session-261123-185048-jmsl/.output.txt
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && grep -A 10 "test_no_game_id_or_series_id_in_output" /tmp/junie-session-261123-185048-jmsl/.output.txt
+| test_no_game_id_or_series_id_in_output (test_build_roster.BuildRosterTest.test_no_game_id_or_series_id_in_output)
+| ...
+| model.json written: 55 champions, 2 teams, CV log_loss=0.0068, accuracy=1.0000
+| 2 team reports (2 LCS 2026) -> /tmp/tmptw06rvk3/out
+The test suite ran 28 tests, with one failure in `test_no_game_id_or_series_id_in_output` due to the unexpected presence of 'g1' in the output, while the remaining tests passed.
+● Edited files
+Updated tests/test_build_roster.py
+The test for output license compliance was updated to allow structural keys while strictly checking for leaked game and series ID values.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest tests.test_build_roster -v 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest tests.test_build_roster -v 2>&1
+| test_by_bucket_stats (tests.test_build_roster.BuildRosterTest.test_by_bucket_stats)
+| ...
+| Ran 15 tests in 0.016s
+| OK
+The 15 tests in test_build_roster passed successfully.
+● Edited files
+Created web/src/roster.js
+The `roster.js` helper file has been created with functions for handling reported-roster reports. This includes utilities for checking report types, extracting roster flags and labels, generating player summaries, and managing Elo fallbacks.
+● Edited files
+Created web/src/roster.test.js
+The roster test file has been created with test cases for various roster-related functions.
+● Edited files
+Updated web/src/App.jsx
+App.jsx has been updated to include a team select toggle, Elo fallback support, and roster-related imports.
+● Edited files
+Updated web/src/components/WinBar.jsx
+The WinBar component has been updated to support Elo fallback logic and display a warning indicator when the fallback is used.
+● Edited files
+Updated web/src/components/ScoutPanel.jsx
+The ScoutPanel component was updated to import roster utilities, display reported roster warnings, and show player roles for favorite champions.
+● Edited files
+Updated web/src/components/ScoutPanel.jsx
+The RosterPoolsCard component has been added to ScoutPanel.jsx.
+● Found "web/src/**/*.css" 
+web/src/styles.css
+! Running: wc -l /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web/src/styles.css
+● wc -l /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web/src/styles.css
+| 224 /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web/src/styles.css
+The styles.css file contains 224 lines.
+● Opened file
+web/src/styles.css
+The styles.css file has been opened.
+● Edited files
+Updated web/src/styles.css
+The styles.css file has been updated with CSS rules for roster badges, toggles, and tables.
+● Opened file
+web/src/components/TeamColumn.jsx
+The TeamColumn component was opened to add a badge for the "us" team when c9-2027 is active.
+● Edited files
+Updated web/src/components/TeamColumn.jsx
+The TeamColumn component was updated to display a badge indicating a reported 2027 roster when applicable.
+● Edited files
+Updated web/src/App.jsx
+The `teamId` prop has been added to the `TeamColumn` components in App.jsx.
+● Edited files
+Updated README.md
+The README.md file has been updated with cross-validation metrics, detailed roster self-scout documentation, and the completion status of step 5a.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest discover -s tests -v 2>&1 | tail -20
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && python3 -m unittest discover -s tests -v 2>&1 | tail -20
+| cls.alpha = json.load(open(cls.out / "teams" / "1.json"))
+| ...
+| model.json written: 55 champions, 2 teams, CV log_loss=0.0068, accuracy=1.0000
+| 2 team reports (2 LCS 2026) -> /tmp/tmpi64826lz/out
+All 28 tests passed successfully, and the model was generated with 100% accuracy.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vitest run 2>&1
+| RUN  v4.1.12 /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web
+| ...
+| Start at  18:54:11
+| Duration  965ms (transform 124ms, setup 0ms, import 175ms, tests 74ms, environment 0ms)
+All 54 Vitest tests passed successfully.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build --outDir /tmp/wb/dist 2>&1
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room/web && npx vite build --outDir /tmp/wb/dist 2>&1
+| vite v7.3.8 building client environment for production...
+| ...
+| ../../../../../../tmp/wb/dist/assets/index-D_SLwYHH.js   247.66 kB | gzip: 78.13 kB
+| ✓ built in 4.61s
+The Vite production build completed successfully, generating the output files in the specified directory.
+! Running: cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && rm -rf web/dist && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    d = json.load(f)
+print('=== Player Summary from c9-2027.json ===')
+for p in d['players']:
+    print(f'\n{p[\"player\"]} ({p[\"role\"]}): status={p[\"status\"]}, games={p[\"games\"]}, teams={p[\"teams\"]}')
+    if p['top']:
+        print('  Top 5 champions:')
+        for t in p['top'][:5]:
+            print(f'    {t[\"champion\"]}: {t[\"games\"]} games ({t[\"record\"]})')
+    else:
+        print('  No champions (no data)')
+print(f'\n=== Roster flags ===')
+for f in d['roster']['flags']:
+    print(f'  - {f}')
+print(f'\n=== Sample ===')
+s = d['sample']
+print(f'  games (max player): {s[\"games\"]}, series: {s[\"series\"]}, wins: {s[\"wins\"]}, win_rate: {s[\"win_rate\"]}')
+print(f'  by_bucket: {json.dumps(s[\"by_bucket\"])}')
+print(f'\n=== Favorites ===')
+for fav in d['fearless']['when_favorites_locked']:
+    print(f'  {fav[\"champion\"]} ({fav[\"player\"]}, {fav[\"role\"]}): g1 {fav[\"g1_picks\"][\"label\"]}, locked {fav[\"locked_games\"]} games')
+    if fav['replacements']:
+        print(f'    replacements: {\", \".join(r[\"champion\"] + \" \" + r[\"label\"] for r in fav[\"replacements\"][:3])}')
+"
+● cd /workspace/projects/d2fe1186-2217-4c8e-8a5f-bbf7159fc16f/hackathon/fearless-war-room && rm -rf web/dist && python3 -c "
+import json
+with open('web/public/data/teams/c9-2027.json') as f:
+    d = json.load(f)
+print('=== Player Summary from c9-2027.json ===')
+for p in d['players']:
+    print(f'\n{p[\"player\"]} ({p[\"role\"]}): status={p[\"status\"]}, games={p[\"games\"]}, teams={p[\"teams\"]}')
+    if p['top']:
+        print('  Top 5 champions:')
+        for t in p['top'][:5]:
+            print(f'    {t[\"champion\"]}: {t[\"games\"]} games ({t[\"record\"]})')
+    else:
+        print('  No champions (no data)')
+print(f'\n=== Roster flags ===')
+for f in d['roster']['flags']:
+    print(f'  - {f}')
+print(f'\n=== Sample ===')
+s = d['sample']
+print(f'  games (max player): {s[\"games\"]}, series: {s[\"series\"]}, wins: {s[\"wins\"]}, win_rate: {s[\"win_rate\"]}')
+print(f'  by_bucket: {json.dumps(s[\"by_bucket\"])}')
+print(f'\n=== Favorites ===')
+for fav in d['fearless']['when_favorites_locked']:
+    print(f'  {fav[\"champion\"]} ({fav[\"player\"]}, {fav[\"role\"]}): g1 {fav[\"g1_picks\"][\"label\"]}, locked {fav[\"locked_games\"]} games')
+    if fav['replacements']:
+        print(f'    replacements: {\", \".join(r[\"champion\"] + \" \" + r[\"label\"] for r in fav[\"replacements\"][:3])}')
+"
+
+| === Player Summary from c9-2027.json ===
+| ...
+| Rakan (CoreJJ, support): g1 5/46, locked 24 games
+| replacements: Nautilus 4/24, Bard 4/24, Leona 3/24
+The build succeeded, the web/dist directory was cleaned, and a summary of player data, roster flags, and champion favorites from c9-2027.json was printed.
+● TASK RESULT
+Implemented Step 5a: Cloud9 2027 "reported roster" self-scout mode. All tests pass (28 Python, 54 vitest), vite build succeeds.
+### Changes
+- **pipeline/build_roster.py**: New Python script that reads GRID rosters.csv for each roster player, builds per-player champion pools from their own games (on any team), and writes `web/public/data/teams/c9-2027.json` with the same schema the app reads. Merges entry into `index.json` idempotently.
+- **tests/test_build_roster.py**: 15 tests covering name matching with whitespace/case, deduplication, multi-team players, no_data/thin flags, win records from team perspective, replacements when favorite burned, index.json merge idempotency, and license check (no game_id/series_id leakage).
+- **web/src/roster.js** + **roster.test.js**: Pure helpers (isReportedRoster, rosterSummary, getEloFallbackTeamId, etc.) with 16 vitest tests.
+- **web/src/App.jsx**: Default "Us" team is c9-2027; segmented toggle "2027 reported | 2026 Kia" switches between roster versions; passes teamId to TeamColumn for badge display.
+- **web/src/components/ScoutPanel.jsx**: Shows "reported 2027 roster, not official" badge + flags; new RosterPoolsCard table; player+role shown in favorites.
+- **web/src/components/TeamColumn.jsx**: Badge on team header when c9-2027.
+- **web/src/components/WinBar.jsx**: Elo fallback to 47351 for c9-2027 with "⚠ uses 2026 Cloud9 Kia" caveat.
+- **web/src/styles.css**: Styles for badge, toggle, roster pools table.
+- **README.md**: Added step 5a section, CV metrics (log loss 0.636, accuracy 63.8%, 1,697 games), roadmap updated.
+### Verification
+- `python3 -m unittest discover -s tests -v`: 28/28 passed
+- `cd web && npx vitest run`: 54/54 passed (6 test files)
+- `cd web && npx vite build --outDir /tmp/wb/dist`: Built successfully
+### Player Summary from c9-2027.json
+- **Frog** (top): no_data, 0 games — No GRID data
+- **Blaber** (jungle): ok, 142 games, Cloud9 Kia — Vi (18), Wukong (15), Sejuani (15), Skarner (13), Jarvan IV (12)
+- **Loki** (mid): ok, 96 games, Cloud9 Kia — Orianna (11), Yone (10), Azir (10), Taliyah (10), Sylas (9)
+- **Yeon** (bot): ok, 113 games, Team Liquid variants — Ezreal (15), Kai'Sa (13), Varus (11), Corki (10), Xayah (9)
+- **CoreJJ** (support): ok, 113 games, Team Liquid variants — Rakan (16), Rell (12), Nautilus (11), Alistar (9), Neeko (9)
+# FILES
+Created pipeline/build_roster.py
+Created tests/test_build_roster.py
+Created web/src/roster.js
+Created web/src/roster.test.js
+Updated web/src/App.jsx
+Updated web/src/components/WinBar.jsx
+Updated web/src/components/ScoutPanel.jsx
+Updated web/src/styles.css
+Updated web/src/components/TeamColumn.jsx
+Updated README.md
+exit=0

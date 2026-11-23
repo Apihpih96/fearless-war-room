@@ -53,7 +53,7 @@ First pick is read from draft order, not side: since 2026 Riot's First Selection
   2. `draft` — mean champion strength of blue picks minus red picks (leave-one-game-out)
   3. `blue` — intercept (blue-side advantage)
   4. `first_pick` — +1 if blue had first pick, −1 otherwise
-- **Cross-validation**: 5-fold grouped by `series_id` (seed 7) → log loss, accuracy, baseline log loss.
+- **Cross-validation**: 5-fold grouped by `series_id` (seed 7) → log loss 0.636 vs 0.693 baseline, accuracy 63.8%, 1,697 games.
 
 The React app loads `model.json` (gracefully hides the bar/panel if missing) and shows:
 
@@ -61,6 +61,22 @@ The React app loads `model.json` (gracefully hides the bar/panel if missing) and
 - **AdvisorPanel** — save-or-burn recommendations for the team on the clock. Each champion gets a verdict chip (Take now / Save / Deny) with plain-English reasons. Clicking a row picks the champion.
 
 Run: `python pipeline/build_model.py` after `build_scout.py`.
+
+## Reported roster self-scout (step 5a)
+
+`pipeline/build_roster.py` builds a scouting report for a mixed roster from each player's own games in the GRID data, on whatever team they played for. The default roster is Cloud9's 2027 reported lineup (reported 2026-11-23, not officially confirmed):
+
+- **Frog** (top): No LoL player found in GRID data → flagged as `no_data`, top-lane pool unknown.
+- **Blaber** (jungle): Games from Cloud9 Kia.
+- **Loki** (mid): Games from Cloud9 Kia.
+- **Yeon** (bot/ADC): Games from Team Liquid (multiple team name variants).
+- **CoreJJ** (support): Games from Team Liquid (multiple team name variants).
+
+Output: `web/public/data/teams/c9-2027.json` (aggregates only) + merged entry in `index.json`.
+
+The web app shows a toggle "2027 reported | 2026 Kia" near the team select, a visible badge "reported 2027 roster, not official", and a compact "Roster pools" card listing each player's status and top champions. Win probability falls back to 2026 Cloud9 Kia Elo with a caveat note.
+
+Run: `python pipeline/build_roster.py` after `build_scout.py`. Re-running is idempotent.
 
 ## Draft board (step 3)
 
@@ -88,6 +104,7 @@ Before every push: `git ls-files | grep -Ei '\.(zst|jsonl|parquet|sqlite|duckdb)
 3. Draft board with Fearless rules (React) (done)
 4. Save-or-burn advisor + win-probability model (done)
 5. Self-scout mode, polish, deploy
+5a. Reported roster self-scout (done)
 
 ## JetBrains tools
 PyCharm (pipeline), WebStorm (frontend), Junie (coding agent).

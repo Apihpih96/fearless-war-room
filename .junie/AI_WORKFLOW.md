@@ -9,3 +9,5 @@ Junie CLI 26.11.2 ran headless (`junie --model=junie-lite --task "$(cat .junie/t
 | 2026-11-23 | `step4-fix2.md` | Rebuilt WinBar (user's team always left, parts legend), advisor always for the user's team, with pick, ban and "next pick" modes, plus perspective tests | Accepted: 37 vitest + 13 Python tests passing, build clean |
 
 Lesson: green unit tests didn't catch a wiring bug. A rendered-UI check in the review loop did, so every Junie task now ends with a screenshot review.
+| 2026-11-24 | `step5a-c9-2027.md` | Added `pipeline/build_roster.py` (per-player champion pools for the reported 2027 Cloud9 roster, built from each player's own games), `roster.js`, a roster toggle, a badge and a Roster pools card, 15 Python and 16 vitest tests, and README metrics | Tests passed, but the screenshot showed wrong denominators (union of games), a Cloud9 Kia mirror as the default opponent, and the pools card hidden when C9 2027 is "Us" |
+| 2026-11-24 | `step5a-fix1.md` | Switched to per-player denominators, added a `defaultOpponent` helper, showed the pools card on either side, fixed the mobile layout | Accepted: 32 Python + 62 vitest tests passing, build clean |
