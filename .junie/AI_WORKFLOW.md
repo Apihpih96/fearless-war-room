@@ -16,5 +16,5 @@ Junie CLI 26.11.2 ran headless (`junie --model=junie-lite --task "$(cat .junie/t
 
 ## Lessons
 
-- green unit tests didn't catch a wiring bug. A rendered-UI check in the review loop did, so every Junie task now ends with a screenshot review.
-- a hidden scrollbar isn't a fixed layout. The overflow check now lists every element past the viewport edge instead of reading `scrollWidth`.
+- Green unit tests didn't catch a wiring bug. A rendered-UI check in the review loop did, so every Junie task now ends with a screenshot review.
+- A hidden scrollbar isn't a fixed layout. The overflow check now lists every element past the viewport edge instead of reading `scrollWidth`.
